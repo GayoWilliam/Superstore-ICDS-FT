@@ -18,7 +18,7 @@ sidebar = dbc.Col(
     style={"background-color": "#0e1525"},
 )
 
-app.layout = html.Div(
+app.layout = dbc.Container(
     children = dbc.Row(
         children = [
             dbc.Col(sidebar, width={"size" : 2}),
@@ -27,6 +27,7 @@ app.layout = html.Div(
         class_name="w-100"
     ),
     className = 'bg-black min-vh-100 pt-2 pb-2',
+    fluid=True
 )
 
 if __name__ == '__main__':

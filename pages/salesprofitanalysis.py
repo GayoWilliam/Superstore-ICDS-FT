@@ -121,19 +121,18 @@ products_table_ag_grid = dag.AgGrid(
    rowData = superstore.to_dict('records'), 
    id = "products-table",
    columnDefs=[
-      {"field": "Product ID", 'presentation' : 'input'},
-      {"field": "Category", 'filter': True},
-      {"field": "Sub-Category", 'filter': True},
-      {"field": "Product Name", 'filter': True},
-      {"field": "Profit", "format" :FormatTemplate.money(2)}
+      {"field": "Product ID"},
+      {"field": "Category", "filter" : True},
+      {"field": "Sub-Category", "filter" : True},
+      {"field": "Product Name", "filter" : True},
+      {"field": "Profit", "filter" : True}
    ],
-   className="ag-theme-alpine-dark",
-   columnSize="sizeToFit",
-   dashGridOptions={'pagination':True},
+   className = "ag-theme-alpine-dark text-light",
+   dashGridOptions = {"pagination" : True}
 )
 
 # Layout
-layout = html.Div(
+layout = dbc.Container(
    children=[
       dbc.Row(
          children = [
@@ -196,7 +195,7 @@ layout = html.Div(
                dcc.Graph(figure=totalsalesovertimetop5distribution, responsive = True)
             ),
             dbc.Col(
-                  dcc.Graph(figure = totalprofitovertimetop5distribution, responsive = True)
+               dcc.Graph(figure = totalprofitovertimetop5distribution, responsive = True)
             ),
          ]
       ),
@@ -211,6 +210,7 @@ layout = html.Div(
          products_table_ag_grid
       )
    ],
+   fluid = True
 )
 
 @callback(

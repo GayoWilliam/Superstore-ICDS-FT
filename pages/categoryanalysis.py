@@ -1,5 +1,5 @@
 import dash
-from dash import html, dcc, dash_table, callback, Output, Input
+from dash import html, dcc, callback, Output, Input, dash_table
 import pandas as pd
 import plotly.express as px
 import dash_bootstrap_components as dbc
@@ -50,8 +50,7 @@ monthlycategorytrenddistribution.update_layout(yaxis = dict(showticklabels = Fal
 monthlycategorytrenddistribution.update_yaxes(showgrid = False, gridcolor = 'rgba(0,0,0,0)', zeroline = False, zerolinecolor = "rgba(0, 0, 0, 0)")
 monthlycategorytrenddistribution.update_xaxes(showgrid = False, gridcolor = 'rgba(0,0,0,0)', zeroline = False, zerolinecolor = "rgba(0, 0, 0, 0)")
 
-# Products Table
-
+# Products Dash Table
 products_table = dash_table.DataTable(
    data = superstore.to_dict('records'), 
    id = "tweets-table",
@@ -92,7 +91,7 @@ products_table = dash_table.DataTable(
 )
 
 # Layout
-layout = html.Div(
+layout = dbc.Container(
    children=[
       dbc.Row(
          dcc.Dropdown(superstore['Segment'].unique(), id = "segment_dropdown", placeholder = "Select a Segment")
@@ -100,23 +99,23 @@ layout = html.Div(
       dbc.Row(
          children = [
             dbc.Col(
-               dcc.Graph(id="category_quantity_distribution", responsive = True)
+               dcc.Graph(id="category_quantity_distribution")
             ),
             dbc.Col(
-               dcc.Graph(id ="category_subcategory_distribution", responsive = True)
+               dcc.Graph(id ="category_subcategory_distribution")
             ),
             dbc.Col(
-               dcc.Graph(id="city_quantity_percentage_distribution", responsive = True)
+               dcc.Graph(id="city_quantity_percentage_distribution")
             ),
          ]
       ),
       dbc.Row(
          children = [
             dbc.Col(
-               dcc.Graph(figure=countryquantitydistribution, responsive = False)
+               dcc.Graph(figure=countryquantitydistribution, responsive = True)
             ),
             dbc.Col(
-               dcc.Graph(id="city_quantity_distribution", responsive = False)
+               dcc.Graph(id="city_quantity_distribution", responsive = True)
             ),
          ]
       ),
@@ -127,6 +126,7 @@ layout = html.Div(
          products_table
       )
    ],
+   fluid=True
 )
 
 @callback(
