@@ -14,20 +14,21 @@ sidebar = dbc.Col(
                 className = 'link-info link-underline link-underline-opacity-0 link-opacity-75-hover'
             )
         ) for page in dash.page_registry.values()
-    ],  
-    className="bg-gradient rounded ms-3 p-4 h-100",
+    ],
+    className="bg-gradient rounded ms-3 p-4 min-vh-100",
     style={"background-color": "#0e1525"},
+    width={"size" : 2}
 )
 
 app.layout = dbc.Container(
     children = dbc.Row(
         children = [
-            dbc.Col(sidebar, width={"size" : 2}),
+            sidebar,
             dbc.Col(dash.page_container)
         ],
         class_name="w-100"
     ),
-    className = 'bg-black min-vh-100 pt-2 pb-2',
+    className = 'bg-black pt-2 pb-2',
     fluid=True
 )
 

@@ -3,7 +3,6 @@ from dash import html, dcc, callback, Input, Output
 import pandas as pd
 import plotly.express as px
 import dash_bootstrap_components as dbc
-from dash.dash_table import FormatTemplate
 import dash_ag_grid as dag
 
 dash.register_page(__name__, path="/salesprofitanalysis", title='Sales Profit Analysis', name='Sales Profit Analysis')
